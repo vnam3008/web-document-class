@@ -23,15 +23,12 @@ async function search() {
     return;
   }
 
-  result.innerHTML = found.map(d => {
-    // Liệt kê tất cả file trong folder với link tải
-    const links = d.files.map(f =>
-      `<a href="${d.folder}/${f}" download>${f}</a>`
-    ).join("<br>");
-    return `<div class="card">
-      <b>${d.name}</b><br>${links}
-    </div>`;
-  }).join("");
+  result.innerHTML = found.map(d => 
+    `<div class="card">
+      <b>${d.name}</b><br>
+      <a href="${d.folder}/${d.zip}" download>Tải toàn bộ folder</a>
+    </div>`
+  ).join("");
 }
 
 loadAll();
