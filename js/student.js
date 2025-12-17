@@ -2,36 +2,37 @@ async function loadAll() {
   const res = await fetch("data/documents.json");
   const docs = await res.json();
   const list = document.getElementById("list");
-  list.innerHTML = "";
-  docs.forEach(d => {
-    list.innerHTML += `<div class="card">
-      <b>${d.code}</b> - ${d.name}<br>
-      <a href="${d.folder}">Mở thư mục</a>
-    </div>`;
-  });
+  list.innerHTML = docs.map(d =>
+    `<div class="card">
+      <b>${d.name}</b><br>
+      <a href="${d.folder}">Mở thư mục / Tải tài liệu</a>
+    </div>`
+  ).join("");
 }
 
 async function search() {
-  const key = document.getElementById("search").value.toLowerCase();
+  const key = document.getElementById("search").value.toLowerCase().trim();
   const res = await fetch("data/documents.json");
   const docs = await res.json();
   const result = document.getElementById("result");
+
+  // Lọc các bài mà tên bài chứa từ khóa
   const found = docs.filter(d =>
-    d.code.toLowerCase().includes(key) ||
     d.name.toLowerCase().includes(key)
   );
 
   if (found.length === 0) {
-    result.innerHTML = "<p>Không tìm thấy</p>";
+    result.innerHTML = "<p>Không tìm thấy kết quả</p>";
     return;
   }
 
   result.innerHTML = found.map(d =>
     `<div class="card">
-      <b>${d.code}</b> - ${d.name}<br>
-      <a href="${d.folder}">Mở thư mục</a>
+      <b>${d.name}</b><br>
+      <a href="${d.folder}">Mở thư mục / Tải tài liệu</a>
     </div>`
   ).join("");
 }
+
 
 loadAll();
