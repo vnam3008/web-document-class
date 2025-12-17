@@ -16,23 +16,22 @@ async function search() {
   const docs = await res.json();
   const result = document.getElementById("result");
 
-  // Lọc các bài mà tên bài chứa từ khóa
-  const found = docs.filter(d =>
-    d.name.toLowerCase().includes(key)
-  );
+  const found = docs.filter(d => d.name.toLowerCase().includes(key));
 
   if (found.length === 0) {
     result.innerHTML = "<p>Không tìm thấy kết quả</p>";
     return;
   }
 
-  result.innerHTML = found.map(d =>
-    `<div class="card">
-      <b>${d.name}</b><br>
-      <a href="${d.folder}">Mở thư mục / Tải tài liệu</a>
-    </div>`
-  ).join("");
+  result.innerHTML = found.map(d => {
+    // Liệt kê tất cả file trong folder với link tải
+    const links = d.files.map(f =>
+      `<a href="${d.folder}/${f}" download>${f}</a>`
+    ).join("<br>");
+    return `<div class="card">
+      <b>${d.name}</b><br>${links}
+    </div>`;
+  }).join("");
 }
-
 
 loadAll();
