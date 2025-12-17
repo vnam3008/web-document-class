@@ -4,7 +4,7 @@ async function loadAll() {
   const list = document.getElementById("list");
   list.innerHTML = docs.map(d =>
     `<div class="card">
-      <b>${d.name}</b><br>
+      <b>${d.name || d.code}</b><br>
       <a href="${d.folder}/${d.zip}" download>Tải toàn bộ folder</a>
     </div>`
   ).join("");
@@ -24,7 +24,7 @@ async function search() {
 
   result.innerHTML = found.map(d => 
     `<div class="card">
-      <b>${d.name}</b><br>
+      <b>${d.name || d.code}</b><br>
       <a href="${d.folder}/${d.zip}" download>Tải toàn bộ folder</a>
     </div>`
   ).join("");
