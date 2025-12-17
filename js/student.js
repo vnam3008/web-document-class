@@ -5,11 +5,10 @@ async function loadAll() {
   list.innerHTML = docs.map(d =>
     `<div class="card">
       <b>${d.name}</b><br>
-      <a href="${d.folder}">Mở thư mục / Tải tài liệu</a>
+      <a href="${d.folder}/${d.zip}" download>Tải toàn bộ folder</a>
     </div>`
   ).join("");
 }
-
 async function search() {
   const key = document.getElementById("search").value.toLowerCase().trim();
   const res = await fetch("data/documents.json");
