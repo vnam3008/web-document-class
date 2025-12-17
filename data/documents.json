@@ -1,5 +1,10 @@
 [
   {
+    "code": "Lý thuyết quay lui",
+    "folder": "documents/algo/quay-lui",
+    "zip": "Quay Lui.zip"
+  },
+  {
     "code": "Dãy con tăng dài nhất (Bản dễ)",
     "name": "Dãy con tăng dài nhất (Bản dễ)",
     "folder": "documents/algo/dp",
